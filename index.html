@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRSK</title>
+    <style>
+        body{
+            margin: 1rem 10rem;
+        }
+        /* Heading section styling */
+.heading {
+    border: 2px solid green;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heading h1 {
+    font-size: 2rem;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
+.heading p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 0.5rem 0 0;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .heading h1 {
+        font-size: 1.5rem;
+    }
+
+    .heading p {
+        font-size: 1rem;
+    }
+}
+
+        /* Navigation styling */
+nav {
+    border: 2px solid green;
+    border-radius: 8px;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav > ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav > ul > li > a:hover {
+    background-color: green;
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav > ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    nav > ul > li > a {
+        padding: 0.5rem;
+    }
+}
+
+        /* About section */
+#about {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    border: 2px solid green;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+/* About me text */
+.about-me {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-me p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 0 0 1rem;
+}
+
+/* Image styling */
+.img-div {
+    width: 100%;
+    height: auto;
+    max-height: 15rem;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #about {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-me {
+        order: 2;
+    }
+
+    .img-div {
+        order: 1;
+        margin-bottom: 1rem;
+    }
+}
+
+
+/* Education section styling */
+.education {
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.education ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.education li {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.education h5 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.education p {
+    margin: 0.2rem 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.education p:first-of-type {
+    font-weight: bold;
+}
+
+.education p:last-of-type {
+    font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .education h5 {
+        font-size: 1.2rem;
+    }
+
+    .education p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Experience Section */
+.experience-item {
+    background: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid #0779e4;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.experience-item h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.5em;
+}
+
+.date-location {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.experience-item ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.experience-item ul li {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+/* General Enhancements */
+body {
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #444;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #0779e4 3px solid;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 5px 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+header a:hover {
+    color: #0779e4;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 10px;
+}
+
+.section {
+    padding: 20px;
+    background: #fff;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2em;
+    border-bottom: 2px solid #0779e4;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+#about {
+    text-align: center;
+}
+
+#about img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #0779e4;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Skills Section */
+#skills {
+    background: #fff;
+    padding: 40px 0;
+}
+
+.skill-category {
+    background: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid #0779e4;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.skill-category h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.5em;
+    border-bottom: 2px solid #0779e4;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.skill-category p {
+    color: #666;
+    margin: 0;
+}
+
+.skill-category:hover {
+    transform: translateY(-5px);
+}
+
+/* General Enhancements */
+body {
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+header {
+    background: #444;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #0779e4 3px solid;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 1.2em;
+    font-weight: 300;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 5px 20px;
+    transition: color 0.3s ease-in-out;
+}
+
+header a:hover {
+    color: #0779e4;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 10px;
+}
+
+.section {
+    padding: 20px;
+    background: #fff;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2em;
+    border-bottom: 2px solid #0779e4;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+#about {
+    text-align: center;
+}
+
+#about img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 5px solid #0779e4;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    header nav {
+        text-align: center;
+    }
+
+    header li {
+        display: block;
+        padding: 10px 0;
+    }
+
+   
+}
+
+/* Project Cards Section */
+#projects {
+    background: #fff;
+    padding: 40px 0;
+}
+
+.project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+}
+
+.project-card h3 {
+    margin: 0;
+    padding: 10px;
+    background: #0779e4;
+    color: #fff;
+    text-align: center;
+}
+
+.project-description {
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    overflow-y: auto;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-card:hover .project-description {
+    opacity: 1;
+}
+
+.project-card p {
+    margin: 10px 0;
+}
+
+.project-card a {
+    color: #0779e4;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .project-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card {
+        width: 80%;
+    }
+}
+
+/* Contact Section */
+#contact {
+    background: #fff;
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+}
+
+.contact-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-left: 5px solid #0779e4;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.contact-info i {
+    color: #0779e4;
+    margin-right: 10px;
+}
+
+.contact-info a {
+    color: #0779e4;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        padding: 15px;
+    }
+
+    .contact-info p {
+        font-size: 1em;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <section class="heading">
+        <h1>Raghavendra Sai Kumar Thotakura</h1>
+        <p>Frontend Developer</p>
+    </section>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <div class="about-me">
+            <p>
+                Hello! I am Raghavendra Sai Kumar Thotakura, a passionate frontend developer pursuing a Bachelor of Technology in Computer Science and Engineering at SRKR Engineering College with a 9.25 GPA.
+                 My experience includes developing interactive applications
+            </p>
+            <p>
+                I specialize in creating dynamic web applications with the MERN stack, responsive restaurant templates, and comprehensive dashboards. My work, including the Chhatrapati Shivaji Maharaj Wikipedia landing page, ensures seamless user experiences.
+                 I've also won 1st prize for Best Template at the Web-Wizards contest.
+            </p>
+        </div>
+            <img class="img-div" src="./my-avatar.jpeg" alt="">
+    </section>
+
+
+    <section class="education" id="education">
+        <ul>
+            <li>
+                <h5>Sagi Rama Krishnam Raju Engineering college </h5>
+                <p>Bachelor of Technology</p>
+                <p>2021-2025</p>
+                <p>GPA : 9.25*</p>
+                <p>Honours Degree - Data Science</p>
+            </li>
+            <li>
+                <h5>Aditya Junior College </h5>
+                <p>2019-2021</p>
+                <p>Percentage: 93.5%</p>
+            </li>
+            <li>
+                <h5>Sri Siddhartha school</h5>
+                <p>2018-2019</p>
+                <p>Percentage: 98%</p>
+            </li>
+        </ul>
+    </section>
+
+
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Henotic Technology - Java Intern</h3>
+                <p class="date-location">Remote | July 2023</p>
+                <ul>
+                    <li>Developed interactive applications using 2 major Java Swing components, such as JFrames and JPanels, significantly enhancing proficiency in core Java concepts.</li>
+                    <li>Gained foundational skills in Eclipse IDE, improving code organization and thoroughly learning valuable data structures and algorithms.</li>
+                    <li>Collaborated with a team of two to design and develop a Flappy Bird game, gaining insights from the instructor and solidifying Java as my primary programming language.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Blackbucks Engineers - AI-ML-DS Intern</h3>
+                <p class="date-location">Remote | July 2024</p>
+                <ul>
+                    <li>Acquired hands-on experience in the end-to-end process of model creation, from dataset selection to evaluation.</li>
+                    <li>Mastered 4 major libraries, including scikit-learn, Matplotlib, NumPy, and pandas, significantly enhancing data analysis and visualization capabilities.</li>
+                    <li>Engineered a weather prediction system utilizing the Naive Bayes Classifier algorithm, achieving accuracy metrics of over 82% across multiple forecasting scenarios.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <p>C, Java, Python, JS</p>
+            </div>
+            <div class="skill-category">
+                <h3>Technology Stack</h3>
+                <p>HTML, CSS, ReactJS</p>
+            </div>
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <p>MongoDB, MySQL</p>
+            </div>
+            <div class="skill-category">
+                <h3>Libraries</h3>
+                <p>NumPy, Pandas, Matplotlib, Scikit-learn</p>
+            </div>
+            <div class="skill-category">
+                <h3>Visualization</h3>
+                <p>Tableau</p>
+            </div>
+            <div class="skill-category">
+                <h3>Other</h3>
+                <p>Teaching, German</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project-cards">
+                <div class="project-card">
+                    <img src="./images.jpeg" alt="Let's Eat Restaurant Template">
+                    <h3>BLOG APPLICATION - MERN STACK</h3>
+                    <div class="project-description">
+                        <p>Created a blog application using the MERN stack (MongoDB, Express.js, React, Node.js) and JWT for secure authentication, enabling seamless sharing of experiences across 10+ fields like education, agriculture, and art.</p>
+                        <p>Designed and implemented a responsive front-end with React, supporting CRUD operations and ensuring a seamless experience on both desktop and mobile devices.</p>
+                        <p>Built a robust back-end with Node.js and Express.js, integrating MongoDB for efficient data storage and retrieval, ensuring fast performance and secure user data management.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="./logo.png" alt="Let's Eat Restaurant Template">
+                    <h3>Let's Eat Restaurant Template</h3>
+                    <div class="project-description">
+                        <p>Crafted a visually appealing and mobile-compatible restaurant interface using HTML, CSS, and JavaScript, ensuring optimal functionality across all devices.</p>
+                        <p>Acquired essential skills in creating user-friendly web interfaces, laying the groundwork for successful completion of 3+ web development projects and significantly enhancing my proficiency.</p>
+                        <p><a href="https://trsk269.github.io/Restaurant/" target="_blank">View Project</a></p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="./pic1.jpeg" alt="Let's Eat Restaurant Template">
+                    <h3>Chhatrapati Shivaji Maharaj Wikipedia</h3>
+                    <div class="project-description">
+                        <p>Created the UI/UX for the landing page of the Chhatrapati Shivaji Maharaj Wikipedia, prioritizing a visually captivating and user-friendly interface reflective of the historical figure's essence.</p>
+                        <p>Implemented intuitive navigation elements and visually appealing graphics to significantly enhance user engagement and streamline access to comprehensive information about Chhatrapati Shivaji Maharaj.</p>
+                        <p><a href="https://bit.ly/4a5XUWJ" target="_blank">View Project</a></p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Details</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:your-email@example.com">t.r.s.kumar05v5@gmail.com</a></p>
+                <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/trsk269" target="_blank">trsk269</a></p>
+                <p><i class="fab fa-linkedin-in"></i> LinkedIn: <a href="https://www.linkedin.com/in/trsk05v5" target="_blank">trsk05v5</a></p>
+                <p><i class="fas fa-phone"></i> Mobile: <a href="tel:+1234567890">+91 9949832634</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <footer class="footer">
+        <p>Thank You</p>
+    </footer>
+    
+</body>
+</html>
