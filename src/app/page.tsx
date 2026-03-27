@@ -1,65 +1,222 @@
 import Image from "next/image";
+import profilePic from "./profilepic.png";
 
+/* ── Types ── */
+interface InfoCardProps {
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+  animDelay?: string;
+}
+
+/* ── Components ── */
+function InfoCard({
+  label,
+  children,
+  className = "",
+  animDelay = "",
+}: InfoCardProps) {
+  return (
+    <div
+      className={`flex flex-col gap-2 opacity-0 animate-fade-in ${animDelay} ${className}`}
+    >
+      <span
+        className="text-[11px] font-medium tracking-[0.15em] uppercase"
+        style={{ color: "#6b6b4e" }}
+      >
+        {label}
+      </span>
+      <p className="text-sm leading-relaxed text-white/90">{children}</p>
+    </div>
+  );
+}
+
+function Logo() {
+  return (
+    <div className="flex items-center gap-3">
+      <div
+        className="w-10 h-10 rounded-full flex items-center justify-center"
+        style={{ border: "1px solid #c8ff00" }}
+      >
+        <span
+          className="block w-4 h-[2px] rounded-full"
+          style={{ backgroundColor: "#c8ff00" }}
+        />
+      </div>
+      <span className="text-sm font-semibold leading-tight text-white">
+        Jayanta
+        <br />
+        Biswas.
+      </span>
+    </div>
+  );
+}
+
+function HireButton() {
+  return (
+    <button
+      className="px-6 py-3 rounded-lg text-sm font-semibold text-black
+                 transition-all duration-300 hover:brightness-110 hover:scale-105
+                 cursor-pointer"
+      style={{ backgroundColor: "#c8ff00" }}
+    >
+      Hire me
+    </button>
+  );
+}
+
+/* ── Page ── */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <section className="relative min-h-screen w-full grid-bg overflow-hidden">
+      {/* Header */}
+      <header className="absolute top-0 inset-x-0 z-10 flex items-center justify-between px-6 py-6 md:px-12 lg:px-16">
+        <Logo />
+        <HireButton />
+      </header>
+
+      {/* Hero Content */}
+      <div className="flex flex-col items-center justify-start pt-28 pb-12 px-6 md:pt-32 lg:pt-28 min-h-screen">
+        {/* Title Block */}
+        <div className="text-center max-w-3xl mx-auto opacity-0 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.1] tracking-tight text-white">
+            Hey, It&apos;s Jayanta Biswas.
+            <br />
+            Full stack Developer
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-5 text-sm md:text-base text-white/60 leading-relaxed max-w-lg mx-auto">
+            I&apos;ve been working as a full stack{" "}
+            <span className="font-semibold text-white">web developer</span> for
+            10 years.
+            <br />I am based on{" "}
+            <span className="font-semibold text-white">Bangladesh</span>.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Info Grid + Profile Image */}
+        <div className="relative w-full max-w-5xl mx-auto mt-10 md:mt-14 flex-1 flex items-start">
+          {/* Left Info Column (Desktop) */}
+          <div className="hidden lg:flex flex-col gap-10 flex-1 pt-4">
+            <InfoCard label="Lives in" animDelay="animate-delay-1">
+              27/2 Ram Babu RD,
+              <br />
+              Mymensingh, Bangladesh
+            </InfoCard>
+            <InfoCard label="Hobbies" animDelay="animate-delay-2">
+              Hiking, Camping, Drawing,
+              <br />
+              Cooking, Gaming
+            </InfoCard>
+            <InfoCard label="Education" animDelay="animate-delay-3">
+              Master in Fine Arts,
+              <br />
+              Bachelor in Graphics
+              <br />
+              Design, Minor in human
+              <br />
+              computer interaction
+            </InfoCard>
+          </div>
+
+          {/* Center Profile Image */}
+          <div className="flex-shrink-0 mx-auto lg:mx-8 xl:mx-14 flex items-start justify-center">
+            <div
+              className="relative w-64 h-80 md:w-72 md:h-[360px] lg:w-80 lg:h-[400px]
+                          rounded-[50%] overflow-hidden
+                          profile-glow opacity-0 animate-fade-in animate-delay-2"
+              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+            >
+              <Image
+                src={profilePic}
+                alt="Jayanta Biswas – Full Stack Developer"
+                fill
+                className="object-cover object-top"
+                priority
+                sizes="(max-width: 768px) 256px, (max-width: 1024px) 288px, 320px"
+              />
+            </div>
+          </div>
+
+          {/* Right Info Column (Desktop) */}
+          <div className="hidden lg:flex flex-col gap-10 flex-1 items-end text-right pt-4">
+            <InfoCard
+              label="Experience"
+              className="items-end"
+              animDelay="animate-delay-4"
+            >
+              I have 8 years
+              <br />
+              of experience as a web
+              <br />
+              developer.
+            </InfoCard>
+            <InfoCard
+              label="Projects Done"
+              className="items-end"
+              animDelay="animate-delay-5"
+            >
+              I&apos;ve crafted 369 website
+              <br />
+              so far
+            </InfoCard>
+            <InfoCard
+              label="Awards"
+              className="items-end"
+              animDelay="animate-delay-6"
+            >
+              2020 Webby award,
+              <br />
+              2023 FWA site of the day
+            </InfoCard>
+          </div>
         </div>
-      </main>
-    </div>
+
+        {/* Mobile / Tablet Info Grid */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-8 mt-10 w-full max-w-md lg:hidden px-2">
+          <InfoCard label="Lives in" animDelay="animate-delay-1">
+            27/2 Ram Babu RD,
+            <br />
+            Mymensingh, Bangladesh
+          </InfoCard>
+          <InfoCard
+            label="Experience"
+            className="text-right items-end"
+            animDelay="animate-delay-2"
+          >
+            I have 8 years
+            <br />
+            of experience as a web developer.
+          </InfoCard>
+          <InfoCard label="Hobbies" animDelay="animate-delay-3">
+            Hiking, Camping, Drawing,
+            <br />
+            Cooking, Gaming
+          </InfoCard>
+          <InfoCard
+            label="Projects Done"
+            className="text-right items-end"
+            animDelay="animate-delay-4"
+          >
+            I&apos;ve crafted 369 website so far
+          </InfoCard>
+          <InfoCard label="Education" animDelay="animate-delay-5">
+            Master in Fine Arts,
+            <br />
+            Bachelor in Graphics Design,
+            <br />
+            Minor in human computer interaction
+          </InfoCard>
+          <InfoCard
+            label="Awards"
+            className="text-right items-end"
+            animDelay="animate-delay-6"
+          >
+            2020 Webby award,
+            <br />
+            2023 FWA site of the day
+          </InfoCard>
+        </div>
+      </div>
+    </section>
   );
 }
