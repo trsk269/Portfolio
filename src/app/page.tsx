@@ -12,8 +12,8 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-      <div className="w-full h-full max-w-[75%] mx-auto">
+    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center overflow-x-hidden">
+      <div className="w-full h-full max-w-[90%] md:max-w-[75%] mx-auto">
         <div className="h-full w-full flex flex-col items-center justify-center text-center pt-10">
           {/* Header */}
           <div className="w-full flex items-center justify-between">

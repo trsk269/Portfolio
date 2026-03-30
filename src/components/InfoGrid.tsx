@@ -1,33 +1,61 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import profilepic from "../app/profilepic.png";
 
 export default function InfoGrid() {
+  const [showDetails, setShowDetails] = useState(false);
+
   return (
-    <div className="w-full flex gap-0 items-stretch justify-center border border-white/10 mt-10 mb-20">
-      {/* sub01 — Left Info */}
-      <div className="h-full w-full flex flex-col gap-8 py-10 px-8 justify-center text-left border-r border-white/10 hidden md:flex">
+    <div className="w-full flex flex-col md:flex-row gap-0 items-stretch justify-center border border-white/10 my-0 md:mt-10 md:mb-20 rounded-2xl md:rounded-none overflow-hidden">
+      {/* sub01 — Profile Picture (Ordered first on mobile) */}
+      <div className="order-1 md:order-2 h-full w-full flex flex-col gap-8 items-center justify-center py-8 md:py-12 px-8 border-b md:border-b-0 md:border-r border-white/10 bg-[#050505] md:bg-transparent">
+        <div className="rounded-full overflow-hidden border-[4px] md:border-[5px] border-[#CAFF00] w-[200px] h-[200px] md:w-[280px] md:h-[280px] relative shadow-[0_0_30px_rgba(202,255,0,0.15)]">
+          <Image
+            src={profilepic}
+            alt="Profile picture"
+            fill
+            className="object-cover"
+            priority={true}
+          />
+        </div>
+
+        {/* Mobile Toggle Button */}
+        <button
+          onClick={() => setShowDetails(!showDetails)}
+          className="md:hidden flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/20 text-sm font-semibold hover:bg-white/5 transition-colors text-white"
+        >
+          {showDetails ? "Hide Information" : "View Information"}
+          {showDetails ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        </button>
+      </div>
+
+      {/* sub02 — Left Info (Ordered second on mobile) */}
+      <div
+        className={`order-2 md:order-1 w-full flex-col gap-8 justify-center text-center md:text-left md:border-r border-white/10 ${showDetails ? "flex py-10 px-8 border-b" : "hidden md:flex md:py-10 md:px-8"}`}
+      >
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Lives In
           </span>
           <span className="text-[15px] xl:text-lg font-semibold leading-snug">
             Rajahmundry,
-            <br />
+            <br className="hidden md:block" />
             Andhra Pradesh, India
           </span>
         </div>
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Hobbies
           </span>
           <span className="text-[15px] xl:text-lg font-semibold leading-snug">
-            Cricket,
-            <br />
-            Traveling
+            Cricket, Traveling
           </span>
         </div>
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Education
           </span>
           <span className="text-[14px] xl:text-[16px] font-semibold leading-snug">
@@ -40,45 +68,32 @@ export default function InfoGrid() {
         </div>
       </div>
 
-      {/* sub02 — Profile Picture */}
-      <div className="h-full w-full flex flex-col gap-4 items-center justify-center py-10 px-8 md:border-r border-white/10">
-        <div className="rounded-full overflow-hidden border-[5px] border-white w-[280px] h-[280px] relative">
-          <Image
-            src={profilepic}
-            alt="Profile picture"
-            fill
-            className="object-cover"
-            priority={true}
-          />
-        </div>
-      </div>
-
-      {/* sub03 — Right Info */}
-      <div className="h-full w-full flex flex-col gap-8 py-10 px-8 justify-center text-right hidden md:flex">
+      {/* sub03 — Right Info (Ordered third on mobile) */}
+      <div
+        className={`order-3 md:order-3 w-full flex-col gap-8 justify-center text-center md:text-right ${showDetails ? "flex py-10 px-8" : "hidden md:flex md:py-10 md:px-8"}`}
+      >
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Experience
           </span>
           <span className="text-[15px] xl:text-lg font-semibold leading-snug">
             Around 1 year of
-            <br />
-            experience as a full-stack
-            <br />
-            developer.
+            <br className="hidden md:block" />
+            experience as a full-stack developer.
           </span>
         </div>
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Projects Done
           </span>
           <span className="text-[15px] xl:text-lg font-semibold leading-snug">
             Crafted around 15 projects
-            <br />
+            <br className="hidden md:block" />
             across various domains
           </span>
         </div>
         <div className="flex flex-col gap-1">
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
             Awards
           </span>
           <span className="text-[14px] xl:text-[15px] font-semibold leading-snug">
