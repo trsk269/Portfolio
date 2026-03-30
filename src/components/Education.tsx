@@ -54,7 +54,7 @@ export default function Education() {
           {educationData.map((item, index) => (
             <div
               key={item.id}
-              className={`group flex flex-col md:flex-row items-start md:items-center justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 ${
+              className={`group flex flex-col md:flex-row items-center md:items-center text-center md:text-left justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 ${
                 index === 0 ? "border-t" : ""
               }`}
             >
@@ -66,7 +66,7 @@ export default function Education() {
               </div>
 
               {/* Details */}
-              <div className="w-full md:w-1/2 flex flex-col gap-1 sm:gap-2 md:pe-12 mb-3 sm:mb-4 md:mb-0">
+              <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-1 sm:gap-2 md:pe-12 mb-3 sm:mb-4 md:mb-0">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white group-hover:translate-x-2 transition-transform duration-500">
                   {item.degree}
                 </h3>
@@ -76,7 +76,7 @@ export default function Education() {
               </div>
 
               {/* Score */}
-              <div className="w-full md:w-1/4 flex md:justify-end items-center">
+              <div className="w-full md:w-1/4 flex justify-center md:justify-end items-center">
                 <div className="px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border border-white/10 bg-[#161616] group-hover:bg-[#CAFF00] group-hover:text-black group-hover:border-[#CAFF00] transition-all duration-500">
                   <span className="text-xs sm:text-sm font-bold tracking-wide">
                     {item.score}
