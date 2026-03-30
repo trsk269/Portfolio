@@ -73,16 +73,6 @@ const data = [
     size: "w-52 h-52 md:w-60 md:h-60",
     img: profilepic,
   },
-  {
-    id: 7,
-    title: "Toastmasters\nSessions",
-    fullDesc:
-      "Engaged in Toastmasters speaking sessions to refine public speaking skills.",
-    icon: <Mic size={24} strokeWidth={1.5} />,
-    theme: "bg-transparent border-[1.5px] border-[#CAFF00]/50 text-[#CAFF00]",
-    size: "w-48 h-48 md:w-56 md:h-56",
-    img: profilepic,
-  },
 ];
 
 export default function Achievements() {
