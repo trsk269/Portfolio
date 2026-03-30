@@ -29,8 +29,8 @@ const portfolioItems = [
 
 export default function Works() {
   return (
-    <section className="relative w-full py-24 border-t border-white/5 overflow-hidden">
-      {/* Faint drafting grid background */}
+    <section className="relative w-full py-14 sm:py-16 lg:py-18 border-t border-white/5 overflow-hidden">
+      {/* Background Grid */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
         style={{
@@ -43,39 +43,42 @@ export default function Works() {
       />
 
       <div className="relative z-10 w-full max-w-[90%] mx-auto flex flex-col items-center">
-        {/* Header Section */}
-        <div className="w-full max-w-5xl mb-16 flex flex-col md:flex-row items-baseline gap-4 text-left">
-          <span className="text-xl md:text-2xl font-serif italic text-white/70">
+        {/* Header (Centered like Skills) */}
+        <div className="w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
+          <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70 block">
             Works
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-            My Beautiful
-            <br />
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white mt-1 leading-tight">
+            My Beautiful <br className="hidden sm:block" />
             Works
           </h2>
         </div>
 
-        {/* 2x2 Grid Section */}
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-16">
+        {/* Grid */}
+        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-y-12 sm:gap-y-14 lg:gap-y-16 gap-x-6 sm:gap-x-10 lg:gap-x-16">
           {portfolioItems.map((item, index) => (
             <div
               key={index}
               className="flex flex-col items-center text-center group"
             >
-              <div className="w-[15rem] h-[20rem] relative overflow-hidden mb-6 bg-[#161616]">
+              {/* Image Container */}
+              <div className="w-full max-w-[240px] sm:max-w-[260px] md:max-w-[280px] aspect-[3/4] relative overflow-hidden mb-5 sm:mb-6 bg-[#161616] border border-white/10 rounded-md">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 280px"
                 />
+
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">
+
+              {/* Text */}
+              <h3 className="text-base sm:text-lg font-bold text-white mb-1">
                 {item.title}
               </h3>
-              <p className="text-sm font-medium text-white/50">
+              <p className="text-xs sm:text-sm font-medium text-white/50">
                 {item.category}
               </p>
             </div>
