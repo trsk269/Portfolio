@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
 import Marquee from "react-fast-marquee";
 import {
   Atom,
@@ -14,6 +16,11 @@ import {
   Triangle,
   ServerCog,
 } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
   { name: "NextJS", icon: <Triangle size={18} /> },
@@ -31,10 +38,43 @@ const skills = [
 ];
 
 export default function Skills() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".skills-header", {
+        scrollTrigger: {
+          trigger: ".skills-header",
+          start: "top 90%",
+        },
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      gsap.from(".skills-marquee", {
+        scrollTrigger: {
+          trigger: ".skills-marquee",
+          start: "top 90%",
+        },
+        scaleX: 0.95,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <section className="w-full py-12 sm:py-14 lg:py-16 overflow-hidden flex flex-col items-center">
+    <section
+      ref={container}
+      className="w-full py-12 sm:py-14 lg:py-16 overflow-hidden flex flex-col items-center"
+    >
       {/* Header */}
-      <div className="w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
+      <div className="skills-header w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
         <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70 block">
           Superpowers
         </span>
@@ -44,7 +84,7 @@ export default function Skills() {
       </div>
 
       {/* Marquee */}
-      <div className="relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5">
+      <div className="skills-marquee relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5">
         {/* Gradients */}
         <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />

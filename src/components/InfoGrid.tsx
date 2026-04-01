@@ -1,17 +1,58 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import profilepic from "../app/profilepic.png";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function InfoGrid() {
   const [showDetails, setShowDetails] = useState(false);
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal the whole container first
+      gsap.from(container.current, {
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Stagger the info blocks
+      gsap.from(".info-block", {
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 80%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out",
+        delay: 0.3,
+      });
+    },
+    { scope: container },
+  );
 
   return (
-    <div className="w-full flex flex-col md:flex-row gap-0 items-stretch justify-center border border-white/10 my-0 md:mt-10 md:mb-20 rounded-2xl md:rounded-none overflow-hidden">
+    <div
+      ref={container}
+      className="w-full flex flex-col md:flex-row gap-0 items-stretch justify-center border border-white/10 my-0 md:mt-10 md:mb-20 rounded-2xl md:rounded-none overflow-hidden"
+    >
       {/* sub01 — Profile Picture (Ordered first on mobile) */}
-      <div className="order-1 md:order-2 h-full w-full flex flex-col gap-8 items-center justify-center py-8 md:py-12 px-8 border-b md:border-b-0 md:border-r border-white/10 bg-[#050505] md:bg-transparent">
+      <div className="info-block order-1 md:order-2 h-full w-full flex flex-col gap-8 items-center justify-center py-8 md:py-12 px-8 border-b md:border-b-0 md:border-r border-white/10 bg-[#050505] md:bg-transparent">
         <div className="rounded-full overflow-hidden border-[4px] md:border-[5px] border-[#CAFF00] w-[200px] h-[200px] md:w-[280px] md:h-[280px] relative shadow-[0_0_30px_rgba(202,255,0,0.15)]">
           <Image
             src={profilepic}
@@ -34,7 +75,7 @@ export default function InfoGrid() {
 
       {/* sub02 — Left Info (Ordered second on mobile) */}
       <div
-        className={`order-2 md:order-1 w-full flex-col gap-8 justify-center text-center md:text-left md:border-r border-white/10 ${showDetails ? "flex py-10 px-8 border-b" : "hidden md:flex md:py-10 md:px-8"}`}
+        className={`info-block order-2 md:order-1 w-full flex-col gap-8 justify-center text-center md:text-left md:border-r border-white/10 ${showDetails ? "flex py-10 px-8 border-b" : "hidden md:flex md:py-10 md:px-8"}`}
       >
         <div className="flex flex-col gap-1">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">
@@ -70,7 +111,7 @@ export default function InfoGrid() {
 
       {/* sub03 — Right Info (Ordered third on mobile) */}
       <div
-        className={`order-3 md:order-3 w-full flex-col gap-8 justify-center text-center md:text-right ${showDetails ? "flex py-10 px-8" : "hidden md:flex md:py-10 md:px-8"}`}
+        className={`info-block order-3 md:order-3 w-full flex-col gap-8 justify-center text-center md:text-right ${showDetails ? "flex py-10 px-8" : "hidden md:flex md:py-10 md:px-8"}`}
       >
         <div className="flex flex-col gap-1">
           <span className="text-[10px] font-semibold uppercase tracking-widest text-[#CAFF00]">

@@ -1,4 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -45,14 +52,51 @@ const experiences = [
 ];
 
 export default function Experience() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal Header
+      gsap.from(".exp-header", {
+        scrollTrigger: {
+          trigger: ".exp-header",
+          start: "top 90%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Reveal Timeline Items
+      const items = gsap.utils.toArray(".exp-item");
+      items.forEach((item: any) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 85%",
+          },
+          x: item.classList.contains("md:flex-row-reverse") ? 40 : -40,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <section className="relative w-full py-14 sm:py-16 lg:py-18 bg-black overflow-hidden border-t border-white/5">
+    <section
+      ref={container}
+      className="relative w-full py-14 sm:py-16 lg:py-18 bg-black overflow-hidden border-t border-white/5"
+    >
       {/* Glow */}
       <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] lg:w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] bg-[#CAFF00]/5 rounded-full blur-[120px] sm:blur-[140px] lg:blur-[150px] pointer-events-none" />
 
       <div className="w-full max-w-[90%] mx-auto flex flex-col items-center gap-12 sm:gap-14 lg:gap-16 relative z-10">
         {/* Header */}
-        <div className="w-full max-w-5xl mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
+        <div className="exp-header w-full max-w-5xl mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70">
             Career
           </span>
@@ -75,7 +119,7 @@ export default function Experience() {
             return (
               <div
                 key={exp.id}
-                className={`relative flex flex-col md:flex-row justify-between items-start md:items-center w-full group ${
+                className={`exp-item relative flex flex-col md:flex-row justify-between items-start md:items-center w-full group ${
                   isEven ? "md:flex-row-reverse" : ""
                 }`}
               >

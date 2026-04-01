@@ -1,18 +1,57 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Mail, Phone } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const interests = ["Web Design", "Native App", "Research"];
 
 export default function Contact() {
   const [selectedInterest, setSelectedInterest] = useState<string>("");
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal Left Column
+      gsap.from(".contact-left", {
+        scrollTrigger: {
+          trigger: ".contact-left",
+          start: "top 90%",
+        },
+        x: -50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Reveal Form (Right Column)
+      gsap.from(".contact-right", {
+        scrollTrigger: {
+          trigger: ".contact-right",
+          start: "top 85%",
+        },
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        delay: 0.2,
+      });
+    },
+    { scope: container },
+  );
 
   return (
-    <section className="relative w-full py-14 sm:py-16 lg:py-18 bg-black border-t border-white/5">
+    <section
+      ref={container}
+      className="relative w-full py-14 sm:py-16 lg:py-18 bg-black border-t border-white/5"
+    >
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12 sm:gap-14 lg:gap-8 items-stretch">
         {/* Left Side */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-between gap-10 lg:gap-0">
+        <div className="contact-left w-full lg:w-1/2 flex flex-col justify-between gap-10 lg:gap-0">
           {/* Heading */}
           <div className="text-center lg:text-left">
             <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-1">
@@ -48,7 +87,7 @@ export default function Contact() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
+        <div className="contact-right w-full lg:w-1/2 flex justify-center lg:justify-end">
           <div className="bg-[#0f1115] border border-white/5 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md sm:max-w-lg shadow-2xl">
             <div className="flex flex-col gap-5 sm:gap-6">
               {/* Interests */}

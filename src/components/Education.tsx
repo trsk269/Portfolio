@@ -1,4 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -32,14 +39,49 @@ const educationData = [
 ];
 
 export default function Education() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal Header
+      gsap.from(".edu-header", {
+        scrollTrigger: {
+          trigger: ".edu-header",
+          start: "top 90%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Reveal Education Items
+      gsap.from(".edu-item", {
+        scrollTrigger: {
+          trigger: ".edu-list",
+          start: "top 85%",
+        },
+        x: -40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power2.out",
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <section className="relative w-full py-14 sm:py-16 lg:py-18 overflow-hidden border-t border-white/5">
+    <section
+      ref={container}
+      className="relative w-full py-14 sm:py-16 lg:py-18 overflow-hidden border-t border-white/5"
+    >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[450px] lg:w-[600px] h-[250px] sm:h-[320px] lg:h-[400px] bg-[#CAFF00]/5 rounded-full blur-[100px] sm:blur-[110px] lg:blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Header */}
-        <div className="w-full mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
+        <div className="edu-header w-full mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70">
             Background
           </span>
@@ -50,11 +92,11 @@ export default function Education() {
         </div>
 
         {/* List */}
-        <div className="w-full flex flex-col">
+        <div className="edu-list w-full flex flex-col">
           {educationData.map((item, index) => (
             <div
               key={item.id}
-              className={`group flex flex-col md:flex-row items-center md:items-center text-center md:text-left justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 ${
+              className={`edu-item group flex flex-col md:flex-row items-center md:items-center text-center md:text-left justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 ${
                 index === 0 ? "border-t" : ""
               }`}
             >

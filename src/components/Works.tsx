@@ -1,8 +1,16 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import pic01 from "../app/PIC01.png";
 import pic02 from "../app/PIC02.png";
 import pic03 from "../app/PIC03.png";
 import pic04 from "../app/PIC04.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const portfolioItems = [
   {
@@ -28,8 +36,43 @@ const portfolioItems = [
 ];
 
 export default function Works() {
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal Header
+      gsap.from(".works-header", {
+        scrollTrigger: {
+          trigger: ".works-header",
+          start: "top 90%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+
+      // Reveal Cards
+      gsap.from(".portfolio-item", {
+        scrollTrigger: {
+          trigger: ".portfolio-grid",
+          start: "top 85%",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power4.out",
+      });
+    },
+    { scope: container },
+  );
+
   return (
-    <section className="relative w-full py-14 sm:py-16 lg:py-18 border-t border-white/5 overflow-hidden">
+    <section
+      ref={container}
+      className="relative w-full py-14 sm:py-16 lg:py-18 border-t border-white/5 overflow-hidden"
+    >
       {/* Background Grid */}
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]"
@@ -44,7 +87,7 @@ export default function Works() {
 
       <div className="relative z-10 w-full max-w-[90%] mx-auto flex flex-col items-center">
         {/* Header (Centered like Skills) */}
-        <div className="w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
+        <div className="works-header w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70 block">
             Works
           </span>
@@ -55,11 +98,11 @@ export default function Works() {
         </div>
 
         {/* Grid */}
-        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-y-12 sm:gap-y-14 lg:gap-y-16 gap-x-6 sm:gap-x-10 lg:gap-x-16">
+        <div className="portfolio-grid w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-y-12 sm:gap-y-14 lg:gap-y-16 gap-x-6 sm:gap-x-10 lg:gap-x-16">
           {portfolioItems.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center group"
+              className="portfolio-item flex flex-col items-center text-center group"
             >
               {/* Image Container */}
               <div className="w-full max-w-[240px] sm:max-w-[260px] md:max-w-[280px] aspect-[3/4] relative overflow-hidden mb-5 sm:mb-6 bg-[#161616] border border-white/10 rounded-md">
