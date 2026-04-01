@@ -7,13 +7,13 @@ import pic04 from "../app/PIC04.png";
 const portfolioItems = [
   {
     image: pic01,
-    title: "Shohoz Sales",
+    title: "MS Dhoni | Captain Cool Tribute",
     category: "Front-end Development, UI Design",
   },
   {
     image: pic02,
-    title: "Jayanta Biswas",
-    category: "Web Design, UI Design",
+    title: "QRcraft",
+    category: "React · qrcode.react · html2canvas",
   },
   {
     image: pic03,
@@ -67,7 +67,7 @@ export default function Works() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 280px"
                 />
 
