@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
-import {
-  Trophy,
-  Award,
-  Code,
-  Palette,
-  Sparkles,
-  Mic,
-  Activity,
-} from "lucide-react";
+import { Trophy, Award, Code, Palette, Sparkles, Activity } from "lucide-react";
 import profilepic from "../app/profilepic.png";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const data = [
   {
@@ -77,12 +74,33 @@ const data = [
 
 export default function Achievements() {
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
+  const container = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Reveal Header ONLY
+      gsap.from(".ach-header", {
+        scrollTrigger: {
+          trigger: ".ach-header",
+          start: "top 90%",
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+    },
+    { scope: container },
+  );
 
   return (
-    <section className="relative w-full py-24 bg-black overflow-hidden border-t border-white/5">
+    <section
+      ref={container}
+      className="relative w-full py-24 bg-black overflow-hidden border-t border-white/5"
+    >
       <div className="w-full max-w-[90%] mx-auto flex flex-col items-center gap-10 md:gap-16 relative z-10">
         {/* Top Header */}
-        <div className="w-full flex flex-col items-center text-center">
+        <div className="ach-header w-full flex flex-col items-center text-center">
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter leading-[1.1] text-white">
             <span className="text-[#CAFF00]">Achievements</span> &<br />
             Participations
@@ -94,7 +112,6 @@ export default function Achievements() {
         </div>
 
         {/* Centered Overlapping Bubbles Cluster */}
-        {/* The tightly bound look is achieved by negative margins pulling them into a "molecular" shape */}
         <div className="w-full max-w-5xl flex flex-wrap justify-center items-center pt-8 md:pl-8">
           {data.map((item) => {
             const isHovered = hoveredNode === item.id;
