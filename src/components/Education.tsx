@@ -10,14 +10,14 @@ gsap.registerPlugin(ScrollTrigger);
 const educationData = [
   {
     id: 1,
-    period: "Nov 2021 — Present",
+    period: "Nov 2021 — May 2025",
     degree: "B.Tech in Computer Science & Engineering",
     institution: "SRKR Engineering College, Bhimavaram, AP",
     score: "GPA: 9.32",
   },
   {
     id: 2,
-    period: "Nov 2021 — Present",
+    period: "Nov 2021 — May 2025",
     degree: "Honours Degree in Data Science",
     institution: "SRKR Engineering College, Bhimavaram, AP",
     score: "GPA: 8.8",
@@ -27,14 +27,14 @@ const educationData = [
     period: "Jun 2019 — May 2021",
     degree: "Intermediate Education",
     institution: "Aditya Junior College, Mandapeta, AP",
-    score: "Percentage: 93.5%",
+    score: "Marks: 935",
   },
   {
     id: 4,
     period: "Jun 2018 — Mar 2019",
     degree: "Secondary School Education",
     institution: "Sri Siddhartha School, Alamuru, AP",
-    score: "Percentage: 98%",
+    score: "GPA: 9.8",
   },
 ];
 
