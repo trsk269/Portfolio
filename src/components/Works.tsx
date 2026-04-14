@@ -5,6 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa6";
 import pic01 from "../app/PIC01.png";
 import pic02 from "../app/PIC02.png";
 import pic03 from "../app/PIC03.png";
@@ -14,24 +16,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const portfolioItems = [
   {
+    image: pic04,
+    title: "Notes",
+    category: "MERN Stack",
+    link: "https://notes-frontend-virid.vercel.app/",
+  },
+  {
     image: pic01,
     title: "MS Dhoni | Captain Cool Tribute",
     category: "Front-end Development, UI Design",
+    link: "https://msd-pink.vercel.app/",
   },
   {
     image: pic02,
     title: "QRcraft",
     category: "React · qrcode.react · html2canvas",
+    link: "https://qr-snowy-zeta.vercel.app/",
   },
   {
     image: pic03,
-    title: "Colosseum",
-    category: "Branding, UI Design",
-  },
-  {
-    image: pic04,
-    title: "Shanghai Riders",
-    category: "UX Design, Usability Test",
+    title: "Let's Eat",
+    category: "HTML, CSS, and JavaScript",
+    link: "https://trsk269.github.io/LetsEatRestro/",
   },
 ];
 
@@ -63,6 +69,18 @@ export default function Works() {
         duration: 1.2,
         stagger: 0.2,
         ease: "power4.out",
+      });
+
+      // Reveal GitHub CTA
+      gsap.from(".github-cta", {
+        scrollTrigger: {
+          trigger: ".github-cta",
+          start: "top 95%",
+        },
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
       });
     },
     { scope: container },
@@ -114,18 +132,55 @@ export default function Works() {
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 40vw, 280px"
                 />
 
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                {/* Hover Overlay with Link */}
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                >
+                  <div className="bg-[#CAFF00] text-black p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <ExternalLink size={24} strokeWidth={2.5} />
+                  </div>
+                </a>
               </div>
 
               {/* Text */}
-              <h3 className="text-base sm:text-lg font-bold text-white mb-1">
-                {item.title}
-              </h3>
-              <p className="text-xs sm:text-sm font-medium text-white/50">
-                {item.category}
-              </p>
+              <div className="flex flex-col items-center gap-1">
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm font-medium text-white/50 mb-2">
+                  {item.category}
+                </p>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[#CAFF00] text-xs sm:text-sm font-bold hover:underline"
+                >
+                  Live Demo
+                  <ExternalLink size={14} />
+                </a>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* GitHub CTA */}
+        <div className="github-cta mt-20 sm:mt-24 text-center">
+          <p className="text-white/40 text-sm sm:text-base mb-6 font-medium uppercase tracking-widest">
+            Want to see more?
+          </p>
+          <a
+            href="https://github.com/trsk269"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-white hover:bg-[#e0e0e0] text-black font-bold px-8 sm:px-10 py-3.5 sm:py-4 rounded-full transition-all group shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+          >
+            <FaGithub size={20} />
+            View My GitHub
+          </a>
         </div>
       </div>
     </section>
