@@ -62,9 +62,12 @@ export default function Home() {
             </div>
 
             {/* Hire Me Button */}
-            <button className="header-item bg-[#CAFF00] text-black font-semibold text-[10px] sm:text-sm px-4 sm:px-6 md:px-7 py-2 sm:py-3 hover:bg-[#b8f000] transition-colors whitespace-nowrap">
+            <a
+              href="#contact"
+              className="header-item bg-[#CAFF00] text-black font-semibold text-[10px] sm:text-sm px-4 sm:px-6 md:px-7 py-2 sm:py-3 hover:bg-[#b8f000] transition-colors whitespace-nowrap rounded-sm"
+            >
               Hire me
-            </button>
+            </a>
           </div>
 
           <Hero />
