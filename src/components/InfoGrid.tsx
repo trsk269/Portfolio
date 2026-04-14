@@ -102,9 +102,9 @@ export default function InfoGrid() {
           <span className="text-[14px] xl:text-[16px] font-semibold leading-snug">
             B.Tech in Computer
             <br />
-            Science & Engineering (9.28)
+            Science & Engineering (9.32)
             <br />
-            Honours in Data Science (9.0)
+            Honours in Data Science (8.8)
           </span>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function InfoGrid() {
             Experience
           </span>
           <span className="text-[15px] xl:text-lg font-semibold leading-snug">
-            Around 1 year of
+            Over 1 year of
             <br className="hidden md:block" />
             experience as a full-stack developer.
           </span>

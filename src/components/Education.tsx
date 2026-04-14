@@ -13,14 +13,14 @@ const educationData = [
     period: "Nov 2021 — Present",
     degree: "B.Tech in Computer Science & Engineering",
     institution: "SRKR Engineering College, Bhimavaram, AP",
-    score: "GPA: 9.28",
+    score: "GPA: 9.32",
   },
   {
     id: 2,
     period: "Nov 2021 — Present",
     degree: "Honours Degree in Data Science",
     institution: "SRKR Engineering College, Bhimavaram, AP",
-    score: "GPA: 9.0",
+    score: "GPA: 8.8",
   },
   {
     id: 3,
