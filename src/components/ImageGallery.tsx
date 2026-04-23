@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useRef } from "react";
-import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useAnimationControls, useMotionValue } from "framer-motion";
 
 import C0 from "../app/CreativeImages/C0.png";
 import C01 from "../app/CreativeImages/C1.png";
@@ -24,8 +24,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ImageGallery() {
   const container = useRef<HTMLElement>(null);
+  const controls = useAnimationControls();
+  const x = useMotionValue(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
 
-  // Creating an array of 12 items for the marquee
+  // Creating an array of items for the marquee (duplicated for loop)
   const items = [
     { id: 0, img: C0, alt: "Creative Image 1" },
     { id: 1, img: C01, alt: "Creative Image 2" },
@@ -40,6 +44,8 @@ export default function ImageGallery() {
     { id: 10, img: C10, alt: "Creative Image 11" },
     { id: 11, img: C11, alt: "Creative Image 12" },
   ];
+
+  const duplicatedItems = [...items, ...items, ...items];
 
   useGSAP(
     () => {
@@ -71,6 +77,22 @@ export default function ImageGallery() {
     { scope: container },
   );
 
+  React.useEffect(() => {
+    if (!isDragging && !isHovered) {
+      controls.start({
+        x: [x.get(), x.get() - 1000],
+        transition: {
+          duration: 35,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [isDragging, isHovered, controls, x]);
+
   return (
     <section
       ref={container}
@@ -85,32 +107,47 @@ export default function ImageGallery() {
         </h2>
       </div>
 
-      <div className="gallery-marquee relative w-full overflow-hidden flex py-4">
+      <div
+        className="gallery-marquee relative w-full overflow-hidden flex py-4 cursor-grab active:cursor-grabbing"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Left and Right Fade Gradients */}
         <div className="absolute top-0 bottom-0 left-0 w-24 md:w-40 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-24 md:w-40 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
 
-        <Marquee
-          speed={30}
-          pauseOnHover={true}
-          className="overflow-hidden"
-          autoFill={true}
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: -2000, right: 0 }}
+          style={{ x }}
+          animate={controls}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => {
+            setIsDragging(false);
+            if (x.get() < -1000) {
+              x.set(x.get() + 1000);
+            } else if (x.get() > 0) {
+              x.set(x.get() - 1000);
+            }
+          }}
+          className="flex whitespace-nowrap"
         >
-          {items.map((item) => (
+          {duplicatedItems.map((item, idx) => (
             <div
-              key={item.id}
-              className="relative w-40 h-40 mx-3 rounded-md overflow-hidden border border-white/10 group cursor-pointer shadow-lg hover:border-[#CAFF00] transition-colors duration-300"
+              key={`${item.id}-${idx}`}
+              className="relative w-40 h-40 mx-3 rounded-md overflow-hidden border border-white/10 group cursor-pointer shadow-lg hover:border-[#CAFF00] transition-colors duration-300 flex-shrink-0 select-none"
             >
               <Image
                 src={item.img}
                 alt={item.alt}
                 fill
                 className="object-cover object-start group-hover:scale-110 transition-transform duration-700"
+                draggable={false}
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300" />
             </div>
           ))}
-        </Marquee>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef } from "react";
-import Marquee from "react-fast-marquee";
 import {
   Atom,
   Server,
@@ -19,6 +18,7 @@ import {
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useAnimationControls, useMotionValue } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,6 +39,13 @@ const skills = [
 
 export default function Skills() {
   const container = useRef<HTMLElement>(null);
+  const controls = useAnimationControls();
+  const x = useMotionValue(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isDragging, setIsDragging] = React.useState(false);
+
+  // Triple the skills to ensure seamless looping
+  const duplicatedSkills = [...skills, ...skills, ...skills];
 
   useGSAP(
     () => {
@@ -68,6 +75,22 @@ export default function Skills() {
     { scope: container },
   );
 
+  React.useEffect(() => {
+    if (!isDragging && !isHovered) {
+      controls.start({
+        x: [x.get(), x.get() - 1000],
+        transition: {
+          duration: 30,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [isDragging, isHovered, controls, x]);
+
   return (
     <section
       ref={container}
@@ -84,21 +107,36 @@ export default function Skills() {
       </div>
 
       {/* Marquee */}
-      <div className="skills-marquee relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5">
+      <div
+        className="skills-marquee relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5 cursor-grab active:cursor-grabbing"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Gradients */}
         <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
 
-        <Marquee
-          speed={35}
-          pauseOnHover={true}
-          className="overflow-hidden"
-          autoFill={true}
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: -2000, right: 0 }}
+          style={{ x }}
+          animate={controls}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => {
+            setIsDragging(false);
+            // Reset position if we drag too far
+            if (x.get() < -1000) {
+              x.set(x.get() + 1000);
+            } else if (x.get() > 0) {
+              x.set(x.get() - 1000);
+            }
+          }}
+          className="flex whitespace-nowrap"
         >
-          {skills.map((skill, index) => (
+          {duplicatedSkills.map((skill, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 mx-2 sm:mx-3 bg-[#161616] border border-white/10 rounded-lg text-white/80 hover:text-white hover:bg-[#1a1a1a] hover:border-white/20 transition-all cursor-default whitespace-nowrap"
+              className="flex items-center gap-2 sm:gap-3 px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 mx-2 sm:mx-3 bg-[#161616] border border-white/10 rounded-lg text-white/80 hover:text-white hover:bg-[#1a1a1a] hover:border-white/20 transition-all cursor-default whitespace-nowrap select-none"
             >
               <div className="text-[#CAFF00] text-sm sm:text-base">
                 {skill.icon}
@@ -108,7 +146,7 @@ export default function Skills() {
               </span>
             </div>
           ))}
-        </Marquee>
+        </motion.div>
       </div>
     </section>
   );

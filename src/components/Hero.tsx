@@ -44,8 +44,8 @@ export default function Hero() {
       {/* Description */}
       <p className="hero-description text-white/60 text-sm sm:text-base md:text-lg max-w-md sm:max-w-xl leading-[1.8]">
         I've been working as a full stack{" "}
-        <strong className="text-white font-semibold">web developer</strong> for
-        1 year.
+        <strong className="text-white font-semibold">web developer</strong> over
+        a year.
         <br />I am based in{" "}
         <strong className="text-white font-semibold">India</strong>.
       </p>

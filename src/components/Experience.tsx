@@ -19,6 +19,7 @@ const experiences = [
     ],
     tech: [
       "React",
+      "React Native",
       "Next.js",
       "Node.js",
       "MongoDB",

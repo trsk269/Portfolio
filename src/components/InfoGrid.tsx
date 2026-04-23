@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import profilepic from "../app/profilepic.png";
+import profilepic from "../app/my-avatar.jpg";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
