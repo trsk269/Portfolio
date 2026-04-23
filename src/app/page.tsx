@@ -23,9 +23,9 @@ export default function Home() {
       const tl = gsap.timeline();
 
       // Entrance animation for header elements
-      tl.from(".header-item", {
-        y: -20,
-        opacity: 0,
+      tl.to(".header-item", {
+        y: 0,
+        autoAlpha: 1,
         duration: 0.8,
         stagger: 0.1,
         ease: "power3.out",
@@ -44,7 +44,7 @@ export default function Home() {
           {/* Header */}
           <div className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
             {/* Left Section */}
-            <div className="flex items-center gap-2 sm:gap-3 min-w-0 header-item">
+            <div className="header-item gsap-reveal flex items-center gap-2 sm:gap-3 min-w-0 -translate-y-5">
               {/* Menu Button */}
               <button
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/20 flex flex-col items-center justify-center gap-[4px] shrink-0"
@@ -64,7 +64,7 @@ export default function Home() {
             {/* Hire Me Button */}
             <a
               href="#contact"
-              className="header-item bg-[#CAFF00] text-black font-semibold text-[10px] sm:text-sm px-4 sm:px-6 md:px-7 py-2 sm:py-3 hover:bg-[#b8f000] transition-colors whitespace-nowrap rounded-sm"
+              className="header-item gsap-reveal bg-[#CAFF00] text-black font-semibold text-[10px] sm:text-sm px-4 sm:px-6 md:px-7 py-2 sm:py-3 hover:bg-[#b8f000] transition-colors whitespace-nowrap rounded-sm -translate-y-5"
             >
               Hire me
             </a>

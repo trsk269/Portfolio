@@ -28,6 +28,7 @@ export default function ImageGallery() {
   const x = useMotionValue(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isDragging, setIsDragging] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
 
   // Creating an array of items for the marquee (duplicated for loop)
   const items = [
@@ -47,28 +48,32 @@ export default function ImageGallery() {
 
   const duplicatedItems = [...items, ...items, ...items];
 
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useGSAP(
     () => {
       // Reveal Header
-      gsap.from(".gallery-header", {
+      gsap.to(".gallery-header", {
         scrollTrigger: {
           trigger: ".gallery-header",
           start: "top 90%",
         },
-        y: 30,
-        opacity: 0,
+        y: 0,
+        autoAlpha: 1,
         duration: 1,
         ease: "power3.out",
       });
 
       // Reveal Marquee
-      gsap.from(".gallery-marquee", {
+      gsap.to(".gallery-marquee", {
         scrollTrigger: {
           trigger: ".gallery-marquee",
           start: "top 85%",
         },
-        y: 40,
-        opacity: 0,
+        y: 0,
+        autoAlpha: 1,
         duration: 1.2,
         ease: "power3.out",
         delay: 0.2,
@@ -78,7 +83,7 @@ export default function ImageGallery() {
   );
 
   React.useEffect(() => {
-    if (!isDragging && !isHovered) {
+    if (isMounted && !isDragging && !isHovered) {
       controls.start({
         x: [x.get(), x.get() - 1000],
         transition: {
@@ -91,14 +96,14 @@ export default function ImageGallery() {
     } else {
       controls.stop();
     }
-  }, [isDragging, isHovered, controls, x]);
+  }, [isDragging, isHovered, controls, x, isMounted]);
 
   return (
     <section
       ref={container}
       className="w-full py-20 overflow-hidden flex flex-col items-center border-t border-white/5 bg-[#050505]"
     >
-      <div className="gallery-header w-full max-w-5xl px-4 text-center md:text-left mb-10 flex flex-col items-center md:items-start">
+      <div className="gallery-header gsap-reveal w-full max-w-5xl px-4 text-center md:text-left mb-10 flex flex-col items-center md:items-start translate-y-8">
         <span className="text-xl md:text-2xl font-serif italic text-white/70">
           AI & Creativity
         </span>
@@ -108,7 +113,7 @@ export default function ImageGallery() {
       </div>
 
       <div
-        className="gallery-marquee relative w-full overflow-hidden flex py-4 cursor-grab active:cursor-grabbing"
+        className="gallery-marquee gsap-reveal relative w-full overflow-hidden flex py-4 cursor-grab active:cursor-grabbing translate-y-10"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

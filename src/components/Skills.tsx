@@ -43,30 +43,35 @@ export default function Skills() {
   const x = useMotionValue(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isDragging, setIsDragging] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
 
   // Triple the skills to ensure seamless looping
   const duplicatedSkills = [...skills, ...skills, ...skills];
 
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useGSAP(
     () => {
-      gsap.from(".skills-header", {
+      gsap.to(".skills-header", {
         scrollTrigger: {
           trigger: ".skills-header",
           start: "top 90%",
         },
-        y: 30,
-        opacity: 0,
+        y: 0,
+        autoAlpha: 1,
         duration: 1,
         ease: "power3.out",
       });
 
-      gsap.from(".skills-marquee", {
+      gsap.to(".skills-marquee", {
         scrollTrigger: {
           trigger: ".skills-marquee",
           start: "top 90%",
         },
-        scaleX: 0.95,
-        opacity: 0,
+        scaleX: 1,
+        autoAlpha: 1,
         duration: 1.2,
         ease: "power2.out",
         delay: 0.2,
@@ -76,7 +81,7 @@ export default function Skills() {
   );
 
   React.useEffect(() => {
-    if (!isDragging && !isHovered) {
+    if (isMounted && !isDragging && !isHovered) {
       controls.start({
         x: [x.get(), x.get() - 1000],
         transition: {
@@ -89,7 +94,7 @@ export default function Skills() {
     } else {
       controls.stop();
     }
-  }, [isDragging, isHovered, controls, x]);
+  }, [isDragging, isHovered, controls, x, isMounted]);
 
   return (
     <section
@@ -97,7 +102,7 @@ export default function Skills() {
       className="w-full py-12 sm:py-14 lg:py-16 overflow-hidden flex flex-col items-center"
     >
       {/* Header */}
-      <div className="skills-header w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center">
+      <div className="skills-header gsap-reveal w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 text-center translate-y-8">
         <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70 block">
           Superpowers
         </span>
@@ -108,7 +113,7 @@ export default function Skills() {
 
       {/* Marquee */}
       <div
-        className="skills-marquee relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5 cursor-grab active:cursor-grabbing"
+        className="skills-marquee gsap-reveal relative w-full overflow-hidden flex bg-[#0a0a0a] py-6 sm:py-8 border-y border-white/5 cursor-grab active:cursor-grabbing scale-x-[0.95]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

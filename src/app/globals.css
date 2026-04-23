@@ -42,3 +42,9 @@ body {
 .pause-animation {
   animation-play-state: paused;
 }
+
+/* GSAP Reveal Utility - Prevents flash of un-animated content */
+.gsap-reveal {
+  opacity: 0;
+  visibility: hidden;
+}

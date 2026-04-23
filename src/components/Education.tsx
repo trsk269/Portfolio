@@ -44,28 +44,28 @@ export default function Education() {
   useGSAP(
     () => {
       // Reveal Header
-      gsap.from(".edu-header", {
+      gsap.to(".edu-header", {
         scrollTrigger: {
           trigger: ".edu-header",
           start: "top 90%",
         },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.5,
+        ease: "expo.out",
       });
 
       // Reveal Education Items
-      gsap.from(".edu-item", {
+      gsap.to(".edu-item", {
         scrollTrigger: {
           trigger: ".edu-list",
           start: "top 85%",
         },
-        x: -40,
-        opacity: 0,
-        duration: 1,
+        x: 0,
+        autoAlpha: 1,
+        duration: 1.2,
         stagger: 0.15,
-        ease: "power2.out",
+        ease: "expo.out",
       });
     },
     { scope: container },
@@ -81,7 +81,7 @@ export default function Education() {
 
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Header */}
-        <div className="edu-header w-full mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
+        <div className="edu-header gsap-reveal w-full mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4 translate-y-10">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70">
             Background
           </span>
@@ -96,7 +96,7 @@ export default function Education() {
           {educationData.map((item, index) => (
             <div
               key={item.id}
-              className={`edu-item group flex flex-col md:flex-row items-center md:items-center text-center md:text-left justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 ${
+              className={`edu-item gsap-reveal group flex flex-col md:flex-row items-center md:items-center text-center md:text-left justify-between py-6 sm:py-8 md:py-10 border-b border-white/10 hover:border-white/30 transition-colors duration-500 -translate-x-10 ${
                 index === 0 ? "border-t" : ""
               }`}
             >

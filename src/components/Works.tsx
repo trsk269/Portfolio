@@ -47,40 +47,40 @@ export default function Works() {
   useGSAP(
     () => {
       // Reveal Header
-      gsap.from(".works-header", {
+      gsap.to(".works-header", {
         scrollTrigger: {
           trigger: ".works-header",
           start: "top 90%",
         },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.5,
+        ease: "expo.out",
       });
 
       // Reveal Cards
-      gsap.from(".portfolio-item", {
+      gsap.to(".portfolio-item", {
         scrollTrigger: {
           trigger: ".portfolio-grid",
           start: "top 85%",
         },
-        y: 60,
-        opacity: 0,
+        y: 0,
+        autoAlpha: 1,
         duration: 1.2,
         stagger: 0.2,
-        ease: "power4.out",
+        ease: "expo.out",
       });
 
       // Reveal GitHub CTA
-      gsap.from(".github-cta", {
+      gsap.to(".github-cta", {
         scrollTrigger: {
           trigger: ".github-cta",
           start: "top 95%",
         },
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.2,
+        ease: "expo.out",
       });
     },
     { scope: container },
@@ -105,7 +105,7 @@ export default function Works() {
 
       <div className="relative z-10 w-full max-w-[90%] mx-auto flex flex-col items-center">
         {/* Header (Centered like Skills) */}
-        <div className="works-header w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center">
+        <div className="works-header gsap-reveal w-full max-w-3xl px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12 text-center translate-y-10">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70 block">
             Works
           </span>
@@ -120,7 +120,7 @@ export default function Works() {
           {portfolioItems.map((item, index) => (
             <div
               key={index}
-              className="portfolio-item flex flex-col items-center text-center group"
+              className="portfolio-item gsap-reveal flex flex-col items-center text-center group translate-y-14"
             >
               {/* Image Container */}
               <div className="w-full max-w-[240px] sm:max-w-[260px] md:max-w-[280px] aspect-[3/4] relative overflow-hidden mb-5 sm:mb-6 bg-[#161616] border border-white/10 rounded-md">
@@ -168,7 +168,7 @@ export default function Works() {
         </div>
 
         {/* GitHub CTA */}
-        <div className="github-cta mt-20 sm:mt-24 text-center">
+        <div className="github-cta gsap-reveal mt-20 sm:mt-24 text-center translate-y-10">
           <p className="text-white/40 text-sm sm:text-base mb-6 font-medium uppercase tracking-widest">
             Want to see more?
           </p>

@@ -11,7 +11,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     // Lenis initialization is handled by the ReactLenis component,
     // but we can add global GSAP settings here if needed.
-    gsap.defaults({ ease: "power3.out", duration: 1.2 });
+    gsap.defaults({ ease: "expo.out", duration: 1.5 });
   }, []);
 
   return (

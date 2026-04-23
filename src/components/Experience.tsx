@@ -58,29 +58,29 @@ export default function Experience() {
   useGSAP(
     () => {
       // Reveal Header
-      gsap.from(".exp-header", {
+      gsap.to(".exp-header", {
         scrollTrigger: {
           trigger: ".exp-header",
           start: "top 90%",
         },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        y: 0,
+        autoAlpha: 1,
+        duration: 1.5,
+        ease: "expo.out",
       });
 
       // Reveal Timeline Items
       const items = gsap.utils.toArray(".exp-item");
       items.forEach((item: any) => {
-        gsap.from(item, {
+        gsap.to(item, {
           scrollTrigger: {
             trigger: item,
             start: "top 85%",
           },
-          x: item.classList.contains("md:flex-row-reverse") ? 40 : -40,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
+          x: 0,
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: "expo.out",
         });
       });
     },
@@ -97,7 +97,7 @@ export default function Experience() {
 
       <div className="w-full max-w-[90%] mx-auto flex flex-col items-center gap-12 sm:gap-14 lg:gap-16 relative z-10">
         {/* Header */}
-        <div className="exp-header w-full max-w-5xl mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4">
+        <div className="exp-header gsap-reveal w-full max-w-5xl mb-10 sm:mb-12 lg:mb-16 flex flex-col items-center md:items-start text-center md:text-left gap-2 sm:gap-3 md:gap-4 translate-y-10">
           <span className="text-lg sm:text-xl md:text-2xl font-serif italic text-white/70">
             Career
           </span>
@@ -120,8 +120,10 @@ export default function Experience() {
             return (
               <div
                 key={exp.id}
-                className={`exp-item relative flex flex-col md:flex-row justify-between items-start md:items-center w-full group ${
-                  isEven ? "md:flex-row-reverse" : ""
+                className={`exp-item gsap-reveal relative flex flex-col md:flex-row justify-between items-start md:items-center w-full group ${
+                  isEven
+                    ? "md:flex-row-reverse translate-x-10"
+                    : "-translate-x-10"
                 }`}
               >
                 {/* Timeline Dot (desktop only) */}
