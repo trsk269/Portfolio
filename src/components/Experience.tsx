@@ -9,25 +9,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
-    id: 1,
-    role: "Full Stack Developer",
-    company: "Memoa (US-based Startup)",
-    date: "Jan 2025 — Present",
-    points: [
-      "Spearheaded the development of core scalable features, including complex gamified streak mechanisms.",
-      "Maintained strict performance and clean code standards across both frontend and backend architectures.",
-    ],
-    tech: [
-      "React",
-      "React Native",
-      "Next.js",
-      "Node.js",
-      "MongoDB",
-      "Tailwind",
-      "Redux",
-      "Git",
-    ],
-  },
+  id: 1,
+  role: "Junior Software Engineer",
+  company: "Memoa (US-based Startup)",
+  date: "Jan 2025 — Present",
+  points: [
+  "Own the entire UI/UX of the platform — leading design decisions, wireframing, and delivering pixel-perfect flows. Also designed custom illustrations and brand assets used across web and mobile.",
+  "Pioneered the web-to-native migration (iOS & Android) using React Native and handled end-to-end App Store & Google Play submission via EAS Build.",
+  "Optimised backend API response times through query tuning and indexing, and applied AI-assisted workflows to consistently ship features on time.",
+],
+  tech: [
+    "React",
+    "React Native",
+    "Next.js",
+    "Node.js",
+    "MongoDB",
+    "Tailwind CSS",
+    "TypeScript",
+    "RevenuCat",
+    "EAS Build",
+    "Git",
+    "Confluence",
+  ],
+},
   {
     id: 2,
     role: "AI-ML-DS Intern",
