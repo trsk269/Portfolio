@@ -22,17 +22,19 @@ const portfolioItems = [
     link: "https://notes-frontend-virid.vercel.app/",
   },
   {
+    image: pic02,
+    title: "Zomato District Clone",
+    category: "React Native, Expo",
+    link: "https://github.com/trsk269/zomato-district-clone",
+    isGithub: true,
+  },
+  {
     image: pic01,
     title: "MS Dhoni | Captain Cool Tribute",
     category: "Front-end Development, UI Design",
     link: "https://msd-pink.vercel.app/",
   },
-  {
-    image: pic02,
-    title: "QRcraft",
-    category: "React · qrcode.react · html2canvas",
-    link: "https://qr-snowy-zeta.vercel.app/",
-  },
+
   {
     image: pic03,
     title: "Let's Eat",
@@ -140,7 +142,11 @@ export default function Works() {
                   className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
                 >
                   <div className="bg-[#CAFF00] text-black p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <ExternalLink size={24} strokeWidth={2.5} />
+                    {item.isGithub ? (
+                      <FaGithub size={24} />
+                    ) : (
+                      <ExternalLink size={24} strokeWidth={2.5} />
+                    )}
                   </div>
                 </a>
               </div>
@@ -159,8 +165,12 @@ export default function Works() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-[#CAFF00] text-xs sm:text-sm font-bold hover:underline"
                 >
-                  Live Demo
-                  <ExternalLink size={14} />
+                  {item.isGithub ? "GitHub" : "Live Demo"}
+                  {item.isGithub ? (
+                    <FaGithub size={14} />
+                  ) : (
+                    <ExternalLink size={14} />
+                  )}
                 </a>
               </div>
             </div>

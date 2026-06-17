@@ -4,34 +4,56 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
-  id: 1,
-  role: "Junior Software Engineer",
-  company: "Memoa (US-based Startup)",
-  date: "Jan 2025 — Present",
-  points: [
-  "Own the entire UI/UX of the platform — leading design decisions, wireframing, and delivering pixel-perfect flows. Also designed custom illustrations and brand assets used across web and mobile.",
-  "Pioneered the web-to-native migration (iOS & Android) using React Native and handled end-to-end App Store & Google Play submission via EAS Build.",
-  "Optimised backend API response times through query tuning and indexing, and applied AI-assisted workflows to consistently ship features on time.",
-],
-  tech: [
-    "React",
-    "React Native",
-    "Next.js",
-    "Node.js",
-    "MongoDB",
-    "Tailwind CSS",
-    "TypeScript",
-    "RevenuCat",
-    "EAS Build",
-    "Git",
-    "Confluence",
-  ],
-},
+    id: 1,
+    role: "Junior Software Engineer",
+    company: "Memoa (US-based Startup)",
+    date: "Jan 2025 — Present",
+    link: "https://www.memoavault.app/",
+    points: [
+      "Own the entire UI/UX of the platform — leading design decisions, wireframing, and delivering pixel-perfect flows. Also designed custom illustrations and brand assets used across web and mobile.",
+      "Pioneered the web-to-native migration (iOS & Android) using React Native and handled end-to-end App Store & Google Play submission via EAS Build.",
+      "Optimised backend API response times through query tuning and indexing, and applied AI-assisted workflows to consistently ship features on time.",
+    ],
+    tech: [
+      "React",
+      "React Native",
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+      "TypeScript",
+      "RevenuCat",
+      "EAS Build",
+      "Git",
+      "Confluence",
+    ],
+  },
+  {
+    id: 3,
+    role: "Full-Stack Developer",
+    company: "Bhimavaram Fresh Cuts",
+    date: "June 2026",
+    link: "https://www.bhimavaramfreshcuts.com/",
+    points: [
+      "Delivered a production-deployed meat & fish e-commerce platform in 1 week — owning the full frontend including UI/UX, responsive layouts, and custom illustrations.",
+      "Revamped the landing page and improved app-wide responsiveness for a seamless experience across all devices.",
+      "Built all custom illustrations and empty-state visuals, and implemented the coupon system and profile page end-to-end (schema → API → UI).",
+    ],
+    tech: [
+      "Next.js",
+      "Node.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "AWS S3",
+      "Zustand",
+    ],
+  },
   {
     id: 2,
     role: "AI-ML-DS Intern",
@@ -42,17 +64,6 @@ const experiences = [
       "Elevated data analysis and evaluation pipelines leveraging Python (sklearn, NumPy, Pandas, Matplotlib).",
     ],
     tech: ["Python", "scikit-learn", "Pandas", "NumPy"],
-  },
-  {
-    id: 3,
-    role: "Java Developer Intern",
-    company: "Henotic Technology",
-    date: "Jul 2023",
-    points: [
-      "Developed responsive interactive desktop applications leveraging robust Java Swing architectures.",
-      "Built a functional 2D game simulation within a collaborative, fast-paced team environment.",
-    ],
-    tech: ["Java", "Swing", "OOP", "Teamwork"],
   },
 ];
 
@@ -143,9 +154,21 @@ export default function Experience() {
                     <h3 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white">
                       {exp.role}
                     </h3>
-                    <p className="text-white/50 text-sm sm:text-base font-medium">
-                      {exp.company}
-                    </p>
+                    {exp.link ? (
+                      <a
+                        href={exp.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/50 text-sm sm:text-base font-medium hover:text-[#CAFF00] transition-colors duration-300 inline-flex items-center gap-1 group/link w-fit"
+                      >
+                        {exp.company}
+                        <ArrowUpRight className="w-4 h-4 text-[#CAFF00]/70 group-hover/link:text-[#CAFF00] transition-all duration-300 transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </a>
+                    ) : (
+                      <p className="text-white/50 text-sm sm:text-base font-medium">
+                        {exp.company}
+                      </p>
+                    )}
                   </div>
 
                   {/* Points */}
