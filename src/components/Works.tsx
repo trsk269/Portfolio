@@ -39,7 +39,7 @@ const portfolioItems = [
     image: pic03,
     title: "Let's Eat",
     category: "HTML, CSS, and JavaScript",
-    link: "https://trsk269.github.io/LetsEatRestro/",
+    link: "https://lets-eat-restro.vercel.app",
   },
 ];
 
