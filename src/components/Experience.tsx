@@ -58,12 +58,24 @@ const experiences = [
     id: 2,
     role: "AI-ML-DS Intern",
     company: "Blackbucks Engineers (Remote)",
-    date: "Jul 2024",
+    date: "Jul 2025",
     points: [
       "Engineered an end-to-end weather prediction model achieving 82% accuracy utilizing Naive Bayes algorithms.",
       "Elevated data analysis and evaluation pipelines leveraging Python (sklearn, NumPy, Pandas, Matplotlib).",
     ],
     tech: ["Python", "scikit-learn", "Pandas", "NumPy"],
+  },
+  {
+    id: 1,
+    role: "Java Intern",
+    company: "Henotic Technology (Remote)",
+    date: "July 2024",
+    points: [
+      "Developed interactive applications using 2 major Java Swing components, such as JFrames and JPanels, significantly enhancing proficiency in core Java concepts.",
+      "Gained foundational skills in Eclipse IDE, improving code organisation and thoroughly learning valuable data structures and algorithms.",
+      "Collaborated with a team of two to design and develop a Flappy Bird game, gaining insights from the instructor and solidifying Java as my primary programming language.",
+    ],
+    tech: ["Java", "Swing", "Eclipse IDE", "Data Structures", "Algorithms"],
   },
 ];
 
