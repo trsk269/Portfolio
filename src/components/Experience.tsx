@@ -9,31 +9,31 @@ import { ArrowUpRight } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
-  {
-    id: 1,
-    role: "Junior Software Engineer",
-    company: "Memoa (US-based Startup)",
-    date: "Jan 2025 — Present",
-    link: "https://www.memoavault.app/",
-    points: [
-      "Own the entire UI/UX of the platform — leading design decisions, wireframing, and delivering pixel-perfect flows. Also designed custom illustrations and brand assets used across web and mobile.",
-      "Pioneered the web-to-native migration (iOS & Android) using React Native and handled end-to-end App Store & Google Play submission via EAS Build.",
-      "Optimised backend API response times through query tuning and indexing, and applied AI-assisted workflows to consistently ship features on time.",
-    ],
-    tech: [
-      "React",
-      "React Native",
-      "Next.js",
-      "Node.js",
-      "MongoDB",
-      "Tailwind CSS",
-      "TypeScript",
-      "RevenuCat",
-      "EAS Build",
-      "Git",
-      "Confluence",
-    ],
-  },
+  // {
+  //   id: 1,
+  //   role: "Junior Software Engineer",
+  //   company: "Memoa (US-based Startup)",
+  //   date: "Jan 2025 — Present",
+  //   link: "https://www.memoavault.app/",
+  //   points: [
+  //     "Own the entire UI/UX of the platform — leading design decisions, wireframing, and delivering pixel-perfect flows. Also designed custom illustrations and brand assets used across web and mobile.",
+  //     "Pioneered the web-to-native migration (iOS & Android) using React Native and handled end-to-end App Store & Google Play submission via EAS Build.",
+  //     "Optimised backend API response times through query tuning and indexing, and applied AI-assisted workflows to consistently ship features on time.",
+  //   ],
+  //   tech: [
+  //     "React",
+  //     "React Native",
+  //     "Next.js",
+  //     "Node.js",
+  //     "MongoDB",
+  //     "Tailwind CSS",
+  //     "TypeScript",
+  //     "RevenuCat",
+  //     "EAS Build",
+  //     "Git",
+  //     "Confluence",
+  //   ],
+  // },
   {
     id: 3,
     role: "Full-Stack Developer",
