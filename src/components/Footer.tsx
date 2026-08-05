@@ -30,13 +30,13 @@ export default function Footer() {
           >
             <FaLinkedinIn size={26} />
           </a>
-          <a
+          {/* <a
             href="#"
             className="text-white/40 hover:text-[#CAFF00] hover:-translate-y-1 transition-all duration-300"
             aria-label="Twitter"
           >
             <FaTwitter size={26} />
-          </a>
+          </a> */}
           <a
             href="mailto:t.r.s.kumar05v5@gmail.com"
             className="text-white/40 hover:text-[#CAFF00] hover:-translate-y-1 transition-all duration-300"

@@ -7,14 +7,27 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ExternalLink } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
-import pic01 from "../app/PIC01.png";
+import pic05 from "../app/PIC05.png";
 import pic02 from "../app/PIC02.png";
-import pic03 from "../app/PIC03.png";
+import pic06 from "../app/PIC06.png";
 import pic04 from "../app/PIC04.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const portfolioItems = [
+  {
+    image: pic05,
+    title: "Studio 369",
+    category: "Front-end Development, UI Design",
+    link: "https://studio369.vercel.app",
+  },
+
+  {
+    image: pic06,
+    title: "Saree House",
+    category: "HTML, CSS, and JavaScript",
+    link: "https://sareehouse.vercel.app",
+  },
   {
     image: pic04,
     title: "Notes",
@@ -27,19 +40,6 @@ const portfolioItems = [
     category: "React Native, Expo",
     link: "https://github.com/trsk269/zomato-district-clone",
     isGithub: true,
-  },
-  {
-    image: pic01,
-    title: "MS Dhoni | Captain Cool Tribute",
-    category: "Front-end Development, UI Design",
-    link: "https://msd-pink.vercel.app/",
-  },
-
-  {
-    image: pic03,
-    title: "Let's Eat",
-    category: "HTML, CSS, and JavaScript",
-    link: "https://lets-eat-restro.vercel.app",
   },
 ];
 
