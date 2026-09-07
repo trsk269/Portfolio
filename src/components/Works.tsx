@@ -10,7 +10,7 @@ import { FaGithub } from "react-icons/fa6";
 import pic05 from "../app/PIC05.png";
 import pic02 from "../app/PIC02.png";
 import pic06 from "../app/PIC06.png";
-import pic04 from "../app/PIC04.png";
+import pic07 from "../app/PIC07.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,13 +25,13 @@ const portfolioItems = [
   {
     image: pic06,
     title: "Saree House",
-    category: "HTML, CSS, and JavaScript",
+    category: "NextJS",
     link: "https://sareehouse.vercel.app",
   },
   {
-    image: pic04,
-    title: "Notes",
-    category: "MERN Stack",
+    image: pic07,
+    title: "Ironline",
+    category: "NextJS & Tailwind CSS",
     link: "https://notes-frontend-virid.vercel.app/",
   },
   {
