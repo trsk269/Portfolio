@@ -32,7 +32,7 @@ const portfolioItems = [
     image: pic07,
     title: "Ironline",
     category: "NextJS & Tailwind CSS",
-    link: "https://notes-frontend-virid.vercel.app/",
+    link: "https://gym-iota-green.vercel.app/",
   },
   {
     image: pic02,
